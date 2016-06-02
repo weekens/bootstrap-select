@@ -1270,7 +1270,7 @@
 
           // Trigger select 'change'
           if (triggerChange) {
-            if ((prevValue != that.$element.val() && that.multiple) || (prevIndex != that.$element.prop('selectedIndex') && !that.multiple)) {
+            if (that.options.alwaysChange || (prevValue != that.$element.val() && that.multiple) || (prevIndex != that.$element.prop('selectedIndex') && !that.multiple)) {
               // $option.prop('selected') is current option state (selected/unselected). state is previous option state.
               that.$element
                 .trigger('changed.bs.select', [clickedIndex, $option.prop('selected'), state])
