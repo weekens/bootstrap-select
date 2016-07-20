@@ -253,6 +253,7 @@
     this.val = Selectpicker.prototype.val;
     this.render = Selectpicker.prototype.render;
     this.refresh = Selectpicker.prototype.refresh;
+    this.append = Selectpicker.prototype.append;
     this.setStyle = Selectpicker.prototype.setStyle;
     this.selectAll = Selectpicker.prototype.selectAll;
     this.deselectAll = Selectpicker.prototype.deselectAll;
@@ -482,7 +483,9 @@
       this.$menu.find('li').remove();
     },
 
-    createLi: function () {
+    createLi: function (options) {
+      options = options || {};
+
       var that = this,
           _li = [],
           optID = 0,
@@ -545,7 +548,18 @@
         }
       }
 
-      this.$element.find('option').each(function (index) {
+      var $options = this.$element.find('option');
+      var currentSize = this.$menuInner && this.$menuInner.length || 0;
+
+      if (options.append && currentSize > 0) {
+        if (currentSize >= $options.length) {
+          return [];
+        }
+
+        $options = $options.eq(currentSize - 1).nextAll();
+      }
+
+      $options.each(function (index) {
         var $this = $(this);
 
         liIndex++;
@@ -1709,6 +1723,11 @@
       if (this.$lis) this.$searchbox.trigger('propertychange');
 
       this.$element.trigger('refreshed.bs.select');
+    },
+
+    append: function() {
+      var li = this.createLi({ append: true });
+      this.$menuInner.append(li);
     },
 
     hide: function () {
