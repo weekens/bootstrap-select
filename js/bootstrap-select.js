@@ -549,7 +549,7 @@
       }
 
       var $options = this.$element.find('option');
-      var currentSize = this.$menuInner && this.$menuInner.length || 0;
+      var currentSize = this.$menuInner && this.$menuInner.find('li').length || 0;
 
       if (options.append && currentSize > 0) {
         if (currentSize >= $options.length) {
