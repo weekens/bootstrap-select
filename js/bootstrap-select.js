@@ -589,7 +589,7 @@
 
         if (!$this.data('content')) {
           // Prepend any icon and append any subtext to the main text.
-          text = icon + '<span class="text">' + text + subtext + '</span>';
+          text = icon + '<span class="text" title="' + text + '">' + text + subtext + '</span>';
         }
 
         if (isOptgroup && $this.data('divider') !== true) {
