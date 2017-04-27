@@ -560,6 +560,7 @@
       }
 
       $options.each(function (index) {
+        index = currentSize + index;
         var $this = $(this);
 
         liIndex++;
