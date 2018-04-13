@@ -557,6 +557,8 @@
         }
 
         $options = $options.eq(currentSize - 1).nextAll();
+        delete this.$lis; // Drop cache.
+        liIndex = currentSize - 1;
       }
 
       $options.each(function (index) {
